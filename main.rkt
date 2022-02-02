@@ -1,23 +1,23 @@
 #lang racket
 (require eopl)
 
-;; nth-element: List -> Int -> Value
-;; usage: (nth-element list n) = nth element of the list (0-index)
-(define nth-element
+;; list.get-informative: List -> Int -> Value
+;; usage: (list.get-informative list n) = nth element of the list (0-index)
+(define list.get-informative
   (lambda (l n)
-    (let ([ret (nth-element.internal l n)])
+    (let ([ret (list.get-informative.internal l n)])
       (if (eq? ret #f)
-          (eopl:error `nth-element
+          (eopl:error `list.get-informative
                       "~s does not have ~s elements.~%" l (+ n 1))
           ret))))
 
-(define nth-element.internal
+(define list.get-informative.internal
   (lambda (l n)
     (if (null? l)
         #f
         (if (zero? n)
             (car l)
-            (nth-element.internal (cdr l) (- n 1))))))
+            (list.get-informative.internal (cdr l) (- n 1))))))
 
 
 
@@ -27,7 +27,7 @@
 ; (define id expr):
 ; define global identifier
 
-; (lambda (args...) body) 
+; (lambda (args...) body)
 ; define a function
 
 ; (let ([id expr] ...) body)
